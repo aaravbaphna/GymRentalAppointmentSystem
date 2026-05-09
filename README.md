@@ -15,6 +15,7 @@ java -jar build/libs/appointment-scheduler.jar
 Or use the Gradle wrapper:
 
 ```bash
+chmod +x gradlew
 ./gradlew bootRun
 ```
 
