@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Provider Availability')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+
+<h1>Provider <span th:text="${providerId}"></span> &middot; Availability</h1>
+
+<h2>Add a slot</h2>
+<form method="post" th:action="@{|/providers/${providerId}/availability|}">
+    <p>
+        <label>Service:
+            <select name="serviceId" required>
+                <option th:each="s : ${services}" th:value="${s.id}"
+                        th:text="|${s.name} (${s.durationMin} min)|"></option>
+            </select>
+        </label>
+    </p>
+    <p>
+        <label>Start (ISO):
+            <input type="text" name="startTime" placeholder="2026-05-11T09:00:00" required />
+        </label>
+    </p>
+    <p>
+        <label>End (ISO):
+            <input type="text" name="endTime"   placeholder="2026-05-11T09:30:00" required />
+        </label>
+    </p>
+    <p><button type="submit">Add Slot</button></p>
+</form>
+
+<h2>Existing slots</h2>
+<table>
+    <thead><tr><th>ID</th><th>Service</th><th>Start</th><th>End</th><th>Status</th><th>Version</th></tr></thead>
+    <tbody>
+    <tr th:each="s : ${slots}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.serviceName}"></td>
+        <td th:text="${s.startTime}"></td>
+        <td th:text="${s.endTime}"></td>
+        <td><span class="pill" th:classappend="${s.status}" th:text="${s.status}"></span></td>
+        <td th:text="${s.version}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
