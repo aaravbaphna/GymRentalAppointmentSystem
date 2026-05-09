@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Confirmation')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+
+<h1>Booking Confirmed ✓</h1>
+
+<table>
+    <tr><th>Appointment ID</th><td th:text="${appointment.id}"></td></tr>
+    <tr><th>Customer</th><td th:text="${appointment.customerName}"></td></tr>
+    <tr><th>Provider</th><td th:text="${appointment.providerName}"></td></tr>
+    <tr><th>Service</th><td th:text="${appointment.serviceName}"></td></tr>
+    <tr><th>Start</th><td th:text="${appointment.startTime}"></td></tr>
+    <tr><th>End</th><td th:text="${appointment.endTime}"></td></tr>
+    <tr><th>Status</th><td><span class="pill" th:classappend="${appointment.status}" th:text="${appointment.status}"></span></td></tr>
+</table>
+
+<p>A confirmation notification will be dispatched shortly via the mock external notification service.</p>
+<p><a th:href="@{/appointments}">View all appointments</a> &middot; <a th:href="@{/slots}">Book another</a></p>
+</body>
+</html>

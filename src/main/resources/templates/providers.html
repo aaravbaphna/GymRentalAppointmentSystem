@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Providers')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+
+<h1>Providers</h1>
+
+<table>
+    <thead><tr><th>Name</th><th>Specialty</th><th>Bio</th><th>Manage</th></tr></thead>
+    <tbody>
+    <tr th:each="p : ${providers}">
+        <td th:text="${p.displayName}"></td>
+        <td th:text="${p.specialty}"></td>
+        <td th:text="${p.bio}"></td>
+        <td><a th:href="@{|/providers/${p.id}/availability|}">Availability</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

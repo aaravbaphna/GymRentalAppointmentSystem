@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Available Slots')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+
+<h1>Available Slots</h1>
+<p th:if="${#lists.isEmpty(slots)}"><em>No open slots right now.</em></p>
+
+<table th:if="${not #lists.isEmpty(slots)}">
+    <thead>
+    <tr><th>Provider</th><th>Service</th><th>Start</th><th>End</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${slots}">
+        <td th:text="${s.providerName}"></td>
+        <td th:text="${s.serviceName}"></td>
+        <td th:text="${s.startTime}"></td>
+        <td th:text="${s.endTime}"></td>
+        <td><span class="pill" th:classappend="${s.status}" th:text="${s.status}"></span></td>
+        <td>
+            <a th:href="@{/book(slotId=${s.id})}">Book</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

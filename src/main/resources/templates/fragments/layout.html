@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8" />
+    <title th:text="|${title} - Appointments|">Appointments</title>
+    <style>
+        :root { --accent: #4f6ef7; --accent-light: #eef1fe; }
+        body { font-family: -apple-system, system-ui, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; color:#222; background:#f8f9fb; }
+        nav { background:#fff; border-bottom: 2px solid var(--accent); padding: .7em 1em; margin-bottom: 1.6em; border-radius: 6px 6px 0 0; }
+        nav a { margin-right: 1.2em; color: var(--accent); text-decoration: none; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
+        h1 { margin-top: 0; color: #1a1a2e; }
+        h2 { color: #2d3561; }
+        table { border-collapse: collapse; width: 100%; margin: 1em 0; background:#fff; border-radius:6px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+        th, td { border: 1px solid #e8eaf0; padding: .55em .7em; text-align: left; }
+        th { background: var(--accent-light); color: #2d3561; }
+        .stat { display:inline-block; padding:.7em 1.1em; border:1px solid #e0e4f7; border-left: 4px solid var(--accent); border-radius:6px; margin-right:.6em; background:#fff; min-width:120px; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+        .stat strong { display:block; font-size:1.6em; color: var(--accent); }
+        .alert-error { padding:.7em 1em; background:#fde7e7; border:1px solid #f3b6b6; border-radius:6px; margin-bottom:1em; }
+        .alert-info  { padding:.7em 1em; background:#e6f4ff; border:1px solid #b9def0; border-radius:6px; margin-bottom:1em; }
+        form input, form select, form textarea { padding:.4em .5em; margin:.2em 0; min-width: 240px; border:1px solid #d0d5e8; border-radius:4px; }
+        button { padding:.4em .9em; background: var(--accent); color:#fff; border:0; border-radius:4px; cursor:pointer; }
+        button:hover { background: #3a58d4; }
+        button.cancel { background:#c33; }
+        .pill { display:inline-block; padding:.15em .55em; border-radius:10px; font-size:.85em; }
+        .pill.OPEN { background:#e6f6e6; color:#2a6f2a; }
+        .pill.BOOKED { background:#fff3cf; color:#7a5e00; }
+        .pill.CLOSED, .pill.CANCELED { background:#eee; color:#666; }
+    </style>
+</head>
+<body>
+<nav th:fragment="nav">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/slots}">Available Slots</a>
+    <a th:href="@{/appointments}">Appointments</a>
+    <a th:href="@{/providers}">Providers</a>
+    <a th:href="@{/health}">Health</a>
+</nav>
+<div th:fragment="alerts">
+    <div th:if="${error}" class="alert-error" th:text="${error}"></div>
+    <div th:if="${info}"  class="alert-info"  th:text="${info}"></div>
+</div>
+</body>
+</html>
